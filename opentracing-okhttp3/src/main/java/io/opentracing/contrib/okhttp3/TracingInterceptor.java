@@ -70,7 +70,7 @@ public class TracingInterceptor implements Interceptor {
 
         // application interceptor?
         if (chain.connection() == null) {
-            Tracer.SpanBuilder spanBuilder = tracer.buildSpan(chain.request().method())
+            Tracer.SpanBuilder spanBuilder = tracer.buildSpan(chain.request().url().encodedPath())
                     .withTag(Tags.SPAN_KIND.getKey(), Tags.SPAN_KIND_CLIENT);
 
             Object tag = chain.request().tag();
